@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,9 +36,19 @@
     }
     
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 18px;
       font-weight: 600;
       color: #5a45b8;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 4px;
     }
     
     .lang-buttons {
@@ -284,8 +294,9 @@
       font-size: 13px;
       color: #6b7280;
       line-height: 1.8;
-      text-align: left;
+      text-align: center;
       display: inline-block;
+      width: 100%;
     }
     
     .business-card-details p {
@@ -310,11 +321,14 @@
   <!-- Header -->
   <header>
     <div class="header-content">
-      <div class="logo">🧼 <span id="company">Sauber</span></div>
+      <div class="logo">
+        <img src="https://raw.githubusercontent.com/sauber2026/plma/main/logo.png" alt="Sauber Logo" class="logo-img">
+        <span id="company">Sauber</span>
+      </div>
       <div class="lang-buttons">
-        <button class="lang-btn active" onclick="switchLanguage('ko')">한글</button>
         <button class="lang-btn" onclick="switchLanguage('en')">English</button>
         <button class="lang-btn" onclick="switchLanguage('nl')">Nederlands</button>
+        <button class="lang-btn" onclick="switchLanguage('ko')">한글</button>
       </div>
     </div>
   </header>
@@ -334,21 +348,35 @@
     <p id="aboutText"></p>
   </section>
 
-  <!-- FAQ Section -->
-  <section>
-    <h2 id="faqTitle">FAQ</h2>
-    <input type="text" class="search-input" id="searchInput" placeholder="검색...">
-    <div class="faq-container" id="faqContainer"></div>
-  </section>
-
   <!-- Download Section -->
   <section>
     <h2 id="downloadTitle">자료 다운로드</h2>
     <div class="button-container">
       <a class="btn" href="https://drive.google.com/uc?export=download&id=1bRjBn1e7baVjPW2dLUWJ8Dgood8-7cZN" download id="catalogBtn">📄 제품 카달로그</a>
       <a class="btn" href="https://drive.google.com/uc?export=download&id=1pIoNUh04uD5BvWRcE3x_zWFo3C6Rn1SG" download id="priceGuideBtn">💰 견적표</a>
-      <a class="btn" href="https://drive.google.com/uc?export=download&id=1ahhuItvwVVNI-jHlTMxZM8ApBfCfXrYq" download id="businessCardBtn">🗂️ 명함</a>
+      <button class="btn" onclick="toggleBusinessCardModal()" id="businessCardBtn">🗂️ 명함</button>
     </div>
+  </section>
+
+  <!-- Business Card Modal -->
+  <div class="qr-modal" id="businessCardModal" style="margin: 2rem 1rem 0; display: none; width: auto;">
+    <div style="max-width: 600px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <p style="font-size: 13px; color: #6b7280; margin: 0 0 0.5rem;">명함 미리보기</p>
+        <div style="width: 100%; max-width: 400px; height: 250px; background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin: 0 auto; background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a class="btn" href="https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg" download style="flex: 1;">다운로드</a>
+        <button class="btn" onclick="toggleBusinessCardModal()" style="flex: 1; background-color: #9ca3af;">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+  <section>
+    <h2 id="faqTitle">FAQ</h2>
+    <input type="text" class="search-input" id="searchInput" placeholder="검색...">
+    <div class="faq-container" id="faqContainer"></div>
   </section>
 
   <!-- WhatsApp Section -->
@@ -357,11 +385,11 @@
     <p id="contactText" style="margin-bottom: 1rem;"></p>
     <div class="button-row">
       <button class="btn whatsapp-btn" onclick="toggleQR()" id="contactQRBtn">QR 코드 보기</button>
-      <a class="btn whatsapp-btn" href="https://wa.me/82105488303" target="_blank" rel="noopener noreferrer" id="contactLinkBtn">메시지 보내기</a>
+      <a class="btn whatsapp-btn" href="https://wa.me/821054883303" target="_blank" rel="noopener noreferrer" id="contactLinkBtn">메시지 보내기</a>
     </div>
     <div class="qr-modal" id="qrModal">
       <p id="qrModalTitle">WhatsApp QR Code:</p>
-      <div class="qr-image" style="background-image: url('https://drive.google.com/thumbnail?id=1778544243015_image.png&sz=w220-h220');"></div>
+      <div class="qr-image" style="background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/WhatappQR.jpg');"></div>
       <p class="qr-modal-subtitle" id="whatsappNumber">+82 10-5488-3303</p>
     </div>
   </section>
@@ -376,6 +404,8 @@
         <p id="contactEmail">📧 yoontaekson@sauber.kr</p>
         <p id="contactPhone">☎️ +82 70-4203-0236</p>
         <p id="contactWhatsApp">💬 +82 10-5488-3303</p>
+        <p id="contactWhatsAppID" style="color: #5a45b8; font-weight: 500;">WhatsApp: yoontaekson@sauber.kr</p>
+        <p id="contactWeChat" style="color: #5a45b8; font-weight: 500;">WeChat: sunchenglee8</p>
       </div>
     </div>
   </section>
@@ -403,8 +433,9 @@
         contactText: '빠른 상담을 원하시나요?',
         contactQRBtn: 'QR 코드 보기',
         contactLinkBtn: '메시지 보내기',
+        emailBtn: '📧 이메일로 문의',
         businessCardTitle: '담당자 정보',
-        name: '손윤택',
+        name: '손윤택 차장',
         title: 'Sales Director',
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
@@ -447,8 +478,9 @@
         contactText: 'Need quick consultation?',
         contactQRBtn: 'Show QR Code',
         contactLinkBtn: 'Send Message',
+        emailBtn: '📧 Email Inquiry',
         businessCardTitle: 'Contact Information',
-        name: 'Yoontaek Son',
+        name: 'Yoontaek Son (Manager)',
         title: 'Sales Director',
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
@@ -491,8 +523,9 @@
         contactText: 'Heeft u snelle advies nodig?',
         contactQRBtn: 'QR-code weergeven',
         contactLinkBtn: 'Bericht verzenden',
+        emailBtn: '📧 E-mail-contact',
         businessCardTitle: 'Contactgegevens',
-        name: 'Yoontaek Son',
+        name: 'Yoontaek Son (Manager)',
         title: 'Sales Director',
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
@@ -521,8 +554,8 @@
       }
     };
 
-    let currentLang = 'ko';
-    let allFAQs = translations.ko.faqs;
+    let currentLang = 'en';
+    let allFAQs = translations.en.faqs;
 
     function switchLanguage(lang) {
       currentLang = lang;
@@ -544,6 +577,7 @@
       document.getElementById('contactText').textContent = t.contactText;
       document.getElementById('contactQRBtn').textContent = t.contactQRBtn;
       document.getElementById('contactLinkBtn').textContent = t.contactLinkBtn;
+      document.getElementById('emailBtn').textContent = t.emailBtn;
       document.getElementById('businessCardTitle').textContent = t.businessCardTitle;
       document.getElementById('contactName').textContent = t.name;
       document.getElementById('contactPosition').textContent = t.title;
@@ -589,6 +623,15 @@
       document.getElementById('qrModal').classList.toggle('active');
     }
 
+    function toggleBusinessCardModal() {
+      const modal = document.getElementById('businessCardModal');
+      if (modal.style.display === 'none') {
+        modal.style.display = 'block';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase();
       const filtered = allFAQs.filter(faq => 
@@ -599,6 +642,13 @@
 
     // Initial render
     renderFAQs(allFAQs);
+    
+    // Force English on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const englishBtn = document.querySelectorAll('.lang-btn')[0];
+      englishBtn.classList.add('active');
+      switchLanguage('en');
+    });
   </script>
 </body>
 </html>
