@@ -327,9 +327,10 @@
         <img src="https://raw.githubusercontent.com/sauber2026/plma/main/logo.png" alt="Sauber Logo" class="logo-img">
       </div>
       <div class="lang-buttons">
-        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
         <button class="lang-btn" onclick="switchLanguage('nl')">Nederlands</button>
-        <button class="lang-btn" onclick="switchLanguage('ko')">한글</button>
+        <button class="lang-btn" onclick="switchLanguage('de')">Deutsch</button>
+        <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
       </div>
     </div>
   </header>
@@ -520,6 +521,54 @@
           { q: 'Are FTA certificates of origin available?', a: 'Yes, we officially hold certified exporter status for Korea-EU, Korea-China, Korea-Vietnam, Korea-ASEAN, and RCEP agreements.' },
           { q: 'Do you provide package design services?', a: 'Package designs should generally be provided by your company. However, we can support design work through our professional outsourcing partners at an additional cost.' },
           { q: 'How can I contact you for inquiries?', a: 'Please contact our sales manager at yoontaekson@sauber.kr for the fastest and most accurate response.' }
+        ]
+      },
+      de: {
+        company: 'Sauber',
+        location: 'PLMA Amsterdam 2026',
+        booth: 'Vielen Dank für Ihren Besuch an unserem Sauber-Stand!',
+        aboutTitle: 'Über Sauber',
+        aboutText: 'Wir entwickeln umweltfreundliche Hygiene- und Desinfektionsprodukte auf Basis von Kapseln-, Tabletten- und Blattformulierungstechnologien. Wie unser Name "Sauber" auf Deutsch bedeutet, konzentrieren wir uns auf technologische Innovationen, um einen sicheren und sauberen Alltag zu schaffen.',
+        faqTitle: 'Häufig gestellte Fragen',
+        searchPlaceholder: 'Suchen...',
+        downloadTitle: 'Materialien herunterladen',
+        homepageBtn: '🌐 Website besuchen',
+        catalogBtn: '📄 Produktkatalog',
+        priceGuideBtn: '💰 Preisangebot',
+        businessCardBtn: '🗂️ Visitenkarte',
+        contactTitle: 'WhatsApp-Anfrage',
+        contactText: 'Benötigen Sie schnelle Beratung?',
+        contactQRBtn: 'QR-Code anzeigen',
+        contactLinkBtn: 'Nachricht senden',
+        emailBtn: '📧 E-Mail-Anfrage',
+        businessCardTitle: 'Kontaktinformation',
+        name: 'Yoontaek Son (Manager)',
+        title: 'Sales Director',
+        email: '📧 yoontaekson@sauber.kr',
+        phone: '☎️ +82 70-4203-0236',
+        whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: 'Herunterladen',
+        businessCardCloseBtn: 'Schließen',
+        footer: '© 2026 Sauber Korea. Alle Rechte vorbehalten.',
+        faqs: [
+          { q: 'Wo ist Sauber ansässig und in welcher Branche ist es tätig?', a: 'Sauber ist ein Hersteller in Gyeongryong, Südkorea, der verschiedene Haushaltshygiene- und Desinfektionsprodukte herstellt, darunter Waschmittelkapseln, Spülmaschinentabletten und Ethanol-Tücher (Linsenreiniger, etc).' },
+          { q: 'Was ist die Mindestbestellmenge (MOQ)?', a: 'Die MOQ hängt von der Produktionsmethode (ODM oder Eigenmarke) und der Produktkategorie ab. Weitere Informationen finden Sie im bereitgestellten Angebotformular.' },
+          { q: 'Was sind die Vorteile von Sauber?', a: 'Als Hersteller für führende Marken wie LG Household & Health Care und Costco garantieren wir konsistente Qualität und Großserienproduktion auf Basis des ISO9001-Qualitätsmanagementsystems und Koreas größter Produktionsanlagen.' },
+          { q: 'Wie wurde die Technologie von Sauber entwickelt?', a: 'Wir betreiben unser eigenes Forschungs- und Entwicklungszentrum und intelligente automatisierte Produktionssysteme, die den gesamten Prozess von der Forschung bis zur Produktion integrieren. Unsere einzigartigen Formeln und Fertigungskompetenz ermöglichen es uns, auf globaler Ebene wettbewerbsfähig zu sein.' },
+          { q: 'Welche spezifischen Produkte stellt Sauber her?', a: 'Wir spezialisieren uns auf hochleistungs-maßgeschneiderte Waschmittelkapseln, hochwertige umweltfreundliche Spülmaschinentabletten, MFDS-zugelassene externe Desinfektionsmittel und Hygienetücher.' },
+          { q: 'Produzieren Sie alle Produkte intern?', a: 'Ja, alle Produkte werden in unseren eigenen Anlagen hergestellt. Rohstoffe und Komponenten werden von verifizierten Partnern unter strenger Qualitätskontrolle bezogen.' },
+          { q: 'Kann ich ODM-Bestellungen auch ohne Produktentwicklungserfahrung aufgeben?', a: 'Ja, absolut. Basierend auf unserer umfangreichen ODM-Expertise können wir Produktplanung und Herstellungsvorbereitung mit nur einem einfachen Marketingkonzept von Ihnen unterstützen.' },
+          { q: 'Ist eine individuelle Produktion über Katalogmuster hinaus möglich?', a: 'Da Kapseln und Tablettenmittel mit speziellen Formen hergestellt werden, erfordert die Entwicklung neuer Designs die Erstellung neuer Formen. (Ca. USD 20.000 für die Entwicklung neuer Kapselformen)' },
+          { q: 'Können Sie länderspezifische Zertifizierungsanforderungen bearbeiten?', a: 'Wir haben Erfahrung mit Exportanforderungen verschiedener Kunden. Die meisten technischen Unterlagen und Verarbeitungen sind möglich, wenn Sie die Anforderungen Ihres Ziellandes angeben.' },
+          { q: 'Welche Patente und Zertifizierungen hat Sauber?', a: 'Wir verfügen über die ISO9001:2015-Zertifizierung und Patente im Bereich Waschmittel (Waschmittelkapseln, Spülmaschinentabletten).' },
+          { q: 'Welche Incoterms wenden Sie normalerweise bei Exporten an?', a: 'Wir bieten normalerweise EXW- und FOB-Bedingungen an, aber CIF-Bedingungen können nach Verhandlung auch arrangiert werden.' },
+          { q: 'Welche Häfen sind dem Versand am nächsten?', a: 'Die koreanischen Häfen Pyeongtaek und Busan liegen relativ nah. Es gibt keinen bestimmten Hafen; wir können den Versand über Ihren bevorzugten Hafen in Abstimmung mit Spediteuren arrangieren.' },
+          { q: 'Haben Sie Erfahrung mit internationalen Exporten?', a: 'Wir exportieren derzeit ODM-Produkte direkt nach Vietnam und China und führen Gespräche mit mehreren Ländern, darunter Schweden und Taiwan.' },
+          { q: 'Können Muster gekauft werden?', a: 'Musterkäufe sind für unsere Eigenmarken (Sub.lab, Sauber, etc.) in Kartoneinheiten (mindestens 1 Karton) möglich.' },
+          { q: 'Was sind die Zahlungsbedingungen?', a: 'Bei regelmäßigen Bestellungen: 50% Anzahlung, 50% Saldo vor Lagerfreigabe. Bei Musterkäufen: 100% Vorkasse.' },
+          { q: 'Sind Ursprungszeugnisse für FTA verfügbar?', a: 'Ja, wir sind offiziell zertifizierter Exporteur für Korea-EU, Korea-China, Korea-Vietnam, Korea-ASEAN und RCEP-Vereinbarungen.' },
+          { q: 'Bieten Sie Verpackungsdesign-Dienstleistungen an?', a: 'Verpackungsdesigns sollten grundsätzlich von Ihrem Unternehmen bereitgestellt werden. Wir können jedoch die Designarbeiten durch unsere professionellen Outsourcing-Partner gegen Zusatzgebühr unterstützen.' },
+          { q: 'Wie kann ich Sie kontaktieren?', a: 'Bitte kontaktieren Sie unseren Verkaufsleiter unter yoontaekson@sauber.kr für die schnellste und genaueste Antwort.' }
         ]
       },
       nl: {
