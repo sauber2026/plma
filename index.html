@@ -375,8 +375,8 @@
         <div style="width: 100%; max-width: 400px; height: 250px; background-color: #f9fafb; border: 2px solid #5a45b8; border-radius: 8px; margin: 0 auto; background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
       </div>
       <div style="display: flex; gap: 10px;">
-        <a class="btn" href="https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg" download style="flex: 1;">다운로드</a>
-        <button class="btn" onclick="toggleBusinessCardModal()" style="flex: 1; background-color: #9ca3af;">닫기</button>
+        <a class="btn" href="https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg" download style="flex: 1;" id="businessCardDownloadBtn">다운로드</a>
+        <button class="btn" onclick="toggleBusinessCardModal()" style="flex: 1; background-color: #9ca3af;" id="businessCardCloseBtn">닫기</button>
       </div>
     </div>
   </div>
@@ -450,6 +450,8 @@
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
         whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: '다운로드',
+        businessCardCloseBtn: '닫기',
         footer: '© 2026 Sauber Korea. All Rights Reserved.',
         faqs: [
           { q: '자우버는 어디에 있는 회사이고 어떤 업종인가요?', a: '자우버는 대한민국 계룡시에 위치한 제조사로, 캡슐세탁세제, 식기세척기 타블렛, 에탄올 티슈(렌즈크리너 등) 등 다양한 생활 위생용품을 생산하고 있습니다.' },
@@ -496,6 +498,8 @@
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
         whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: 'Download',
+        businessCardCloseBtn: 'Close',
         footer: '© 2026 Sauber Korea. All Rights Reserved.',
         faqs: [
           { q: 'Where is Sauber located and what industry does it operate in?', a: 'Sauber is a manufacturer located in Gyeongsan, South Korea, producing various household hygiene products including laundry capsules, dishwasher tablets, and ethanol wipes (lens cleaner, etc).' },
@@ -542,6 +546,8 @@
         email: '📧 yoontaekson@sauber.kr',
         phone: '☎️ +82 70-4203-0236',
         whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: 'Downloaden',
+        businessCardCloseBtn: 'Sluiten',
         footer: '© 2026 Sauber Korea. Alle rechten voorbehouden.',
         faqs: [
           { q: 'Waar is Sauber gevestigd en in welke branche is het actief?', a: 'Sauber is een fabrikant in Gyeongsan, Zuid-Korea, die diverse huishoudelijke hygiënische producten produceert, waaronder waskapsuels, vaatwastabletten en ethanooldoekjes.' },
@@ -594,6 +600,8 @@
       document.getElementById('contactPosition').textContent = t.title;
       document.getElementById('contactEmail').textContent = t.email;
       document.getElementById('contactPhone').textContent = t.phone;
+      document.getElementById('businessCardDownloadBtn').textContent = t.businessCardDownloadBtn;
+      document.getElementById('businessCardCloseBtn').textContent = t.businessCardCloseBtn;
       document.getElementById('contactWhatsApp').textContent = t.whatsapp;
       document.getElementById('whatsappNumber').textContent = '+82 10-5488-3303';
       document.getElementById('footer').textContent = t.footer;
