@@ -45,8 +45,8 @@
     }
     
     .logo-img {
-      width: 40px;
-      height: 40px;
+      width: 120px;
+      height: 120px;
       object-fit: contain;
       border-radius: 4px;
     }
@@ -114,10 +114,11 @@
     }
     
     h2 {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 28px;
+      font-weight: 700;
       margin-bottom: 1rem;
       color: #1f2937;
+      text-align: center;
     }
     
     p {
@@ -253,13 +254,14 @@
     }
     
     .qr-image {
-      width: 220px;
-      height: 220px;
+      width: 300px;
+      height: 533px;
       background-color: #fff;
       border: 2px solid #5a45b8;
       border-radius: 8px;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
       margin: 0.5rem 0;
     }
     
@@ -323,7 +325,6 @@
     <div class="header-content">
       <div class="logo">
         <img src="https://raw.githubusercontent.com/sauber2026/plma/main/logo.png" alt="Sauber Logo" class="logo-img">
-        <span id="company">Sauber</span>
       </div>
       <div class="lang-buttons">
         <button class="lang-btn" onclick="switchLanguage('en')">English</button>
@@ -336,9 +337,13 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1 id="location">암스테르담 PLMA 2026</h1>
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="https://raw.githubusercontent.com/sauber2026/plma/main/plmaimg.jpg" alt="PLMA Amsterdam" style="width: 100%; max-width: 500px; border-radius: 8px;">
+      </div>
+      <h1 id="location" style="font-size: 24px;">암스테르담 PLMA 2026</h1>
       <p id="booth">우리 부스를 찾아주세요!</p>
-      <p class="hero-subtitle">📍 Booth #TBD | 📅 May 2026</p>
+      <p class="hero-subtitle">📍 Booth : 8 Hall / D39 RAI Amsterdam Convention Centre</p>
+      <p class="hero-subtitle">📅 May 19-20, 2026</p>
     </div>
   </section>
 
@@ -346,10 +351,14 @@
   <section>
     <h2 id="aboutTitle">자우버에 대해</h2>
     <p id="aboutText"></p>
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <img src="https://raw.githubusercontent.com/sauber2026/plma/main/sauber_product.png" alt="Sauber Products" style="width: 100%; max-width: 500px; border-radius: 8px;">
+    </div>
   </section>
 
   <!-- Download Section -->
   <section>
+    <a class="btn" href="https://sauber.kr/?lang=en" target="_blank" rel="noopener noreferrer" style="background-color: #10b981; margin-bottom: 1rem;" id="homepageBtn">🌐 홈페이지 방문</a>
     <h2 id="downloadTitle">자료 다운로드</h2>
     <div class="button-container">
       <a class="btn" href="https://drive.google.com/uc?export=download&id=1bRjBn1e7baVjPW2dLUWJ8Dgood8-7cZN" download id="catalogBtn">📄 제품 카달로그</a>
@@ -362,12 +371,13 @@
   <div class="qr-modal" id="businessCardModal" style="margin: 2rem 1rem 0; display: none; width: auto;">
     <div style="max-width: 600px; margin: 0 auto;">
       <div style="text-align: center; margin-bottom: 1rem;">
-        <p style="font-size: 13px; color: #6b7280; margin: 0 0 0.5rem;">명함 미리보기</p>
-        <div style="width: 100%; max-width: 400px; height: 250px; background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin: 0 auto; background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+        <p style="font-size: 13px; color: #6b7280; margin: 0 0 0.5rem;">명함 (클릭하면 다운로드)</p>
+        <a href="https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg" download style="display: inline-block; cursor: pointer;">
+          <div style="width: 100%; max-width: 400px; height: 250px; background-color: #f9fafb; border: 2px solid #5a45b8; border-radius: 8px; margin: 0 auto; background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"></div>
+        </a>
       </div>
-      <div style="display: flex; gap: 10px;">
-        <a class="btn" href="https://raw.githubusercontent.com/sauber2026/plma/main/BusinessCard.jpg" download style="flex: 1;">다운로드</a>
-        <button class="btn" onclick="toggleBusinessCardModal()" style="flex: 1; background-color: #9ca3af;">닫기</button>
+      <div style="text-align: center;">
+        <button class="btn" onclick="toggleBusinessCardModal()" style="background-color: #9ca3af; max-width: 200px;">닫기</button>
       </div>
     </div>
   </div>
@@ -420,12 +430,13 @@
       ko: {
         company: 'Sauber',
         location: '암스테르담 PLMA 2026',
-        booth: '우리 부스를 찾아주세요!',
-        aboutTitle: '자우버에 대해',
+        booth: '저희 자우버 부스에 와주셔서 감사드립니다.',
+        aboutTitle: '자우버 (Sauber) 소개',
         aboutText: '캡슐 · 타블렛 · 시트형 제형 기술을 기반으로 친환경 위생 및 소독 제품을 연구 · 개발하고 있습니다. 독일어로 "깨끗함"을 뜻하는 기업명처럼 "안전하고 깨끗한 일상"을 만들기 위해 기술 혁신 및 역량을 집중하고 있습니다.',
         faqTitle: 'FAQ',
         searchPlaceholder: '검색...',
         downloadTitle: '자료 다운로드',
+        homepageBtn: '🌐 홈페이지 방문',
         catalogBtn: '📄 제품 카달로그',
         priceGuideBtn: '💰 견적표',
         businessCardBtn: '🗂️ 명함',
@@ -465,12 +476,13 @@
       en: {
         company: 'Sauber',
         location: 'PLMA Amsterdam 2026',
-        booth: 'Visit our booth!',
+        booth: 'Thank you for visiting our Sauber booth!',
         aboutTitle: 'About Sauber',
         aboutText: 'We research and develop eco-friendly hygiene and disinfection products based on capsule, tablet, and sheet formulation technologies. Like our name "Sauber" means in German, we focus on technology innovation to create a safe and clean everyday life.',
         faqTitle: 'FAQ',
         searchPlaceholder: 'Search...',
         downloadTitle: 'Download Materials',
+        homepageBtn: '🌐 Visit Website',
         catalogBtn: '📄 Product Catalog',
         priceGuideBtn: '💰 Price Quote',
         businessCardBtn: '🗂️ Business Card',
@@ -510,12 +522,13 @@
       nl: {
         company: 'Sauber',
         location: 'PLMA Amsterdam 2026',
-        booth: 'Bezoek onze stand!',
+        booth: 'Dank u dat u onze Sauber-stand bezoekt!',
         aboutTitle: 'Over Sauber',
         aboutText: 'We onderzoeken en ontwikkelen milieuvriendelijke hygiëne- en desinfectieproducten op basis van capsule-, tablet- en bladtechnologieën. Net als onze naam "Sauber" betekent in het Duits, richten we ons op technische innovatie om een veilige en schoon dagelijks leven te creëren.',
         faqTitle: 'Veelgestelde vragen',
         searchPlaceholder: 'Zoeken...',
         downloadTitle: 'Materialen downloaden',
+        homepageBtn: '🌐 Website bezoeken',
         catalogBtn: '📄 Productcatalogus',
         priceGuideBtn: '💰 Prijsofferte',
         businessCardBtn: '🗂️ Visitekaartje',
@@ -562,7 +575,6 @@
       allFAQs = translations[lang].faqs;
       const t = translations[lang];
       
-      document.getElementById('company').textContent = t.company;
       document.getElementById('location').textContent = t.location;
       document.getElementById('booth').textContent = t.booth;
       document.getElementById('aboutTitle').textContent = t.aboutTitle;
@@ -570,6 +582,7 @@
       document.getElementById('faqTitle').textContent = t.faqTitle;
       document.getElementById('searchInput').placeholder = t.searchPlaceholder;
       document.getElementById('downloadTitle').textContent = t.downloadTitle;
+      document.getElementById('homepageBtn').textContent = t.homepageBtn;
       document.getElementById('catalogBtn').textContent = t.catalogBtn;
       document.getElementById('priceGuideBtn').textContent = t.priceGuideBtn;
       document.getElementById('businessCardBtn').textContent = t.businessCardBtn;
@@ -577,7 +590,6 @@
       document.getElementById('contactText').textContent = t.contactText;
       document.getElementById('contactQRBtn').textContent = t.contactQRBtn;
       document.getElementById('contactLinkBtn').textContent = t.contactLinkBtn;
-      document.getElementById('emailBtn').textContent = t.emailBtn;
       document.getElementById('businessCardTitle').textContent = t.businessCardTitle;
       document.getElementById('contactName').textContent = t.name;
       document.getElementById('contactPosition').textContent = t.title;
@@ -640,14 +652,16 @@
       renderFAQs(filtered);
     });
 
-    // Initial render
+    // Initial render - English
     renderFAQs(allFAQs);
     
-    // Force English on load
-    document.addEventListener('DOMContentLoaded', function() {
-      const englishBtn = document.querySelectorAll('.lang-btn')[0];
-      englishBtn.classList.add('active');
+    // Initialize all text content on load
+    window.addEventListener('DOMContentLoaded', function() {
       switchLanguage('en');
+      const englishBtn = document.querySelectorAll('.lang-btn')[0];
+      if (englishBtn) {
+        englishBtn.classList.add('active');
+      }
     });
   </script>
 </body>
