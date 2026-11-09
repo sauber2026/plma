@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sauber - PLMA Amsterdam 2026</title>
+  <title>Sauber - PLMA's 2026 Store Brands Marketplace</title>
   <style>
     * {
       margin: 0;
@@ -33,6 +33,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     
     .logo {
@@ -53,11 +55,14 @@
     
     .lang-buttons {
       display: flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
     }
     
     .lang-btn {
-      padding: 6px 12px;
+      padding: 6px 10px;
+      white-space: nowrap;
       border: 1px solid #d1d5db;
       border-radius: 6px;
       background-color: #fff;
@@ -222,6 +227,19 @@
       background-color: #1fa857;
     }
     
+    .wechat-btn {
+      background-color: #07C160;
+    }
+    
+    .wechat-btn:hover {
+      background-color: #05a352;
+    }
+    
+    .wechat-qr-image {
+      height: 408px;
+      border-color: #07C160;
+    }
+    
     .button-row {
       display: flex;
       gap: 10px;
@@ -327,10 +345,13 @@
         <img src="https://raw.githubusercontent.com/sauber2026/plma/main/logo.png" alt="Sauber Logo" class="logo-img">
       </div>
       <div class="lang-buttons">
-        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-        <button class="lang-btn" onclick="switchLanguage('nl')">Nederlands</button>
-        <button class="lang-btn" onclick="switchLanguage('de')">Deutsch</button>
-        <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
+        <button class="lang-btn active" onclick="switchLanguage('en', this)">English</button>
+        <button class="lang-btn" onclick="switchLanguage('es', this)">Español</button>
+        <button class="lang-btn" onclick="switchLanguage('de', this)">Deutsch</button>
+        <button class="lang-btn" onclick="switchLanguage('nl', this)">Nederlands</button>
+        <button class="lang-btn" onclick="switchLanguage('zh', this)">中文</button>
+        <button class="lang-btn" onclick="switchLanguage('ja', this)">日本語</button>
+        <button class="lang-btn" onclick="switchLanguage('ko', this)">한국어</button>
       </div>
     </div>
   </header>
@@ -339,12 +360,12 @@
   <section class="hero">
     <div class="hero-content">
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <img src="https://raw.githubusercontent.com/sauber2026/plma/main/plmaimg.jpg" alt="PLMA Amsterdam" style="width: 100%; max-width: 500px; border-radius: 8px;">
+        <img src="plma2026.png" alt="PLMA's 2026 Store Brands Marketplace - Private Label Trade Show, November 15-17, Chicago" style="display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);" onerror="this.style.display='none';">
       </div>
-      <h1 id="location" style="font-size: 24px;">암스테르담 PLMA 2026</h1>
-      <p id="booth">우리 부스를 찾아주세요!</p>
-      <p class="hero-subtitle">📍 Booth : 8 Hall / D39 RAI</p>
-      <p class="hero-subtitle">📅 May 19-20, 2026</p>
+      <h1 id="location" style="font-size: 24px;">PLMA Chicago 2026</h1>
+      <p id="booth">Thank you for visiting our Sauber booth!</p>
+      <p class="hero-subtitle">📍 Booth H-3111 · South Hall</p>
+      <p class="hero-subtitle">📅 NOV 15-17, 2026 · Donald E. Stephens Convention Center</p>
     </div>
   </section>
 
@@ -383,7 +404,6 @@
   </div>
 
   <section>
-  <section>
     <h2 id="faqTitle">FAQ</h2>
     <input type="text" class="search-input" id="searchInput" placeholder="검색...">
     <div class="faq-container" id="faqContainer"></div>
@@ -401,6 +421,23 @@
       <p id="qrModalTitle">WhatsApp QR Code:</p>
       <div class="qr-image" style="background-image: url('https://raw.githubusercontent.com/sauber2026/plma/main/WhatappQR.jpg');"></div>
       <p class="qr-modal-subtitle" id="whatsappNumber">+82 10-5488-3303</p>
+    </div>
+  </section>
+
+  <!-- WeChat Section -->
+  <section>
+    <h2 id="wechatTitle">WeChat</h2>
+    <p id="wechatText" style="margin-bottom: 1rem;"></p>
+    <div class="button-row">
+      <button class="btn wechat-btn" onclick="toggleWechatQR()" id="wechatQrBtn">QR Code</button>
+      <button class="btn wechat-btn" onclick="copyWechat()" id="wechatIdBtn">ID: sunchenglee8</button>
+    </div>
+    <p id="wechatCopied" style="text-align: center; color: #07C160; font-size: 13px; margin-top: 8px; display: none;">✅ Copied!</p>
+    <div class="qr-modal" id="wechatQrModal">
+      <p id="wechatQrTitle">WeChat QR Code</p>
+      <div class="qr-image wechat-qr-image" style="background-image: url('https://raw.githubusercontent.com/sauber2026/lifestyle-week/main/WechatQR.jpg');"></div>
+      <p class="qr-modal-subtitle">WeChat ID: sunchenglee8</p>
+      <button class="btn" onclick="toggleWechatQR()" style="background-color: #9ca3af; margin-top: 12px;" id="wechatCloseBtn">Close</button>
     </div>
   </section>
 
@@ -427,9 +464,153 @@
 
   <script>
     const translations = {
+      es: {
+        company: 'Sauber',
+        location: 'PLMA Chicago 2026',
+        booth: '¡Gracias por visitar nuestro stand de Sauber!',
+        aboutTitle: 'Acerca de Sauber',
+        aboutText: 'Sauber es un fabricante con sede en Corea del Sur. Investigamos y desarrollamos productos ecológicos de higiene y desinfección basados en tecnologías de formulación en cápsulas, tabletas y láminas. Igual que nuestro nombre "Sauber" significa "limpio" en alemán, concentramos nuestra innovación tecnológica en crear una vida diaria segura y limpia.',
+        faqTitle: 'Preguntas frecuentes',
+        searchPlaceholder: 'Buscar...',
+        downloadTitle: 'Descargar materiales',
+        homepageBtn: '🌐 Visitar el sitio web',
+        catalogBtn: '📄 Información de la empresa y catálogo',
+        priceGuideBtn: '💰 Lista de precios (OEM/ODM y distribución de marca propia)',
+        businessCardBtn: '🗂️ Tarjeta de presentación',
+        contactTitle: 'Consultas por WhatsApp',
+        contactText: '¿Necesita una consulta rápida?',
+        contactQRBtn: 'Ver código QR',
+        contactLinkBtn: 'Enviar mensaje',
+        emailBtn: '📧 Consulta por correo electrónico',
+        businessCardTitle: 'Información de contacto',
+        name: 'Yoontaek Son (Gerente)',
+        title: 'Sales Director',
+        email: '📧 yoontaekson@sauber.kr',
+        phone: '☎️ +82 70-4203-0236',
+        whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: 'Descargar',
+        businessCardCloseBtn: 'Cerrar',
+        footer: '© 2026 Sauber Korea. Todos los derechos reservados.',
+        faqs: [
+          { q: '¿Dónde está Sauber y en qué sector opera?', a: 'Sauber es un fabricante ubicado en Gyeryong, Corea del Sur, que produce diversos productos de higiene doméstica, incluidas cápsulas de detergente para lavar, tabletas para lavavajillas y toallitas con etanol (limpiador de lentes, etc.).' },
+          { q: '¿Cuál es la cantidad mínima de pedido (MOQ)?', a: 'El MOQ varía según el método de producción (ODM o marca propia) y la categoría de producto. Consulte la lista de precios que le facilitamos para conocer los detalles.' },
+          { q: '¿Cuáles son las ventajas de Sauber?', a: 'Como fabricante de marcas globales líderes (LG Household & Health Care, Costco, entre otras), garantizamos calidad constante y producción a gran escala gracias a nuestro sistema de gestión de calidad ISO9001 y a las mayores instalaciones de producción de Corea.' },
+          { q: '¿Cómo se ha desarrollado la tecnología de Sauber?', a: 'Contamos con nuestro propio centro de I+D y con sistemas de producción automatizados e inteligentes, lo que integra todo el proceso desde la investigación hasta la fabricación. Nuestras fórmulas propias y nuestra experiencia productiva nos permiten competir a nivel global.' },
+          { q: '¿Qué productos fabrica Sauber concretamente?', a: 'Nos especializamos en cápsulas de detergente de alto rendimiento hechas a medida, tabletas ecológicas para lavavajillas de alta calidad, desinfectantes de uso externo aprobados por el MFDS y toallitas higiénicas.' },
+          { q: '¿Fabrican todos los productos internamente?', a: 'Sí, todos los productos se fabrican en nuestras propias instalaciones. Las materias primas y los componentes se adquieren de proveedores verificados bajo un estricto control de calidad.' },
+          { q: '¿Puedo hacer pedidos ODM sin experiencia en desarrollo de producto?', a: 'Sí, por supuesto. Con nuestra experiencia acumulada en ODM, podemos apoyar la planificación del producto y la preparación de la fabricación solo con un concepto de marketing sencillo por su parte.' },
+          { q: '¿Es posible una producción personalizada más allá de las muestras del catálogo?', a: 'Como las cápsulas y las tabletas se producen con moldes específicos, un diseño nuevo requiere fabricar un molde nuevo. (Aproximadamente 20.000 USD para el desarrollo de un molde de cápsula nuevo)' },
+          { q: '¿Pueden gestionar los requisitos de certificación de cada país?', a: 'Tenemos experiencia gestionando requisitos de exportación para clientes muy diversos. Si nos indica los requisitos de su país de destino, podemos preparar la mayor parte de la documentación técnica y los trámites.' },
+          { q: '¿Qué patentes y certificaciones tiene Sauber?', a: 'Disponemos de la certificación internacional ISO9001:2015 y de patentes relacionadas con detergentes (cápsulas de detergente para lavar y detergente para lavavajillas).' },
+          { q: '¿Qué Incoterms aplican habitualmente en las exportaciones?', a: 'Normalmente ofrecemos condiciones EXW y FOB, aunque también podemos acordar CIF previa negociación.' },
+          { q: '¿Qué puertos son los más cercanos para el embarque?', a: 'Los puertos coreanos de Pyeongtaek y Busan son relativamente cercanos. No hay un puerto asignado: podemos organizar el embarque por el puerto que prefiera, en coordinación con las agencias de transporte.' },
+          { q: '¿Tienen experiencia exportando internacionalmente?', a: 'Actualmente exportamos productos ODM directamente a Vietnam y China, y estamos en conversaciones con varios países, entre ellos Suecia y Taiwán.' },
+          { q: '¿Se pueden comprar muestras?', a: 'La compra de muestras está disponible para nuestras propias marcas (Sub.lab, Sauber, etc.) por unidades de caja (mínimo 1 caja).' },
+          { q: '¿Cuáles son las condiciones de pago?', a: 'Para pedidos habituales: 50 % de anticipo y 50 % restante antes de la salida del almacén. Para la compra de muestras: 100 % por adelantado.' },
+          { q: '¿Disponen de certificados de origen para los TLC?', a: 'Sí, contamos oficialmente con la condición de exportador autorizado para los acuerdos Corea-UE, Corea-China, Corea-Vietnam, Corea-ASEAN y RCEP.' },
+          { q: '¿Ofrecen servicios de diseño de envases?', a: 'Por norma general, el diseño del envase debe facilitarlo su empresa. No obstante, podemos apoyar el trabajo de diseño a través de nuestros socios externos profesionales con un coste adicional.' },
+          { q: '¿Cómo puedo ponerme en contacto para consultas?', a: 'Escriba a nuestro responsable comercial a yoontaekson@sauber.kr y recibirá la respuesta más rápida y precisa.' }
+        ]
+      },
+      zh: {
+        company: 'Sauber',
+        location: 'PLMA Chicago 2026',
+        booth: '感谢您莅临 Sauber 展位！',
+        aboutTitle: '关于 Sauber',
+        aboutText: 'Sauber 是一家位于韩国的制造商，以胶囊、片剂及片状（Sheet）配方技术为基础，研发环保型卫生与消毒产品。正如公司名称在德语中意为"洁净"，我们持续投入技术创新，致力于打造安全洁净的日常生活。',
+        faqTitle: '常见问题',
+        searchPlaceholder: '搜索...',
+        downloadTitle: '资料下载',
+        homepageBtn: '🌐 访问官方网站',
+        catalogBtn: '📄 公司简介与产品目录',
+        priceGuideBtn: '💰 报价表（OEM/ODM 及自有品牌产品分销）',
+        businessCardBtn: '🗂️ 名片',
+        contactTitle: 'WhatsApp 咨询',
+        contactText: '需要快速咨询吗？',
+        contactQRBtn: '显示二维码',
+        contactLinkBtn: '发送消息',
+        emailBtn: '📧 邮件咨询',
+        businessCardTitle: '联系方式',
+        name: 'Yoontaek Son（经理）',
+        title: 'Sales Director',
+        email: '📧 yoontaekson@sauber.kr',
+        phone: '☎️ +82 70-4203-0236',
+        whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: '下载',
+        businessCardCloseBtn: '关闭',
+        footer: '© 2026 Sauber Korea. 版权所有。',
+        faqs: [
+          { q: 'Sauber 位于哪里，从事哪个行业？', a: 'Sauber 是一家位于韩国鸡龙市的制造商，生产洗衣胶囊、洗碗机洗涤块、乙醇湿巾（镜头清洁巾等）等多种生活卫生用品。' },
+          { q: '最小起订量（MOQ）是多少？', a: 'MOQ 会因生产方式（ODM 或自有品牌分销）及产品类别而不同，详情请参阅我们提供的报价表。' },
+          { q: 'Sauber 的优势是什么？', a: '作为 LG 生活健康、Costco 等全球一线品牌的制造商，我们依托 ISO9001 质量管理体系与韩国最大规模的生产系统，同时保证品质稳定与大批量生产能力。' },
+          { q: 'Sauber 的技术实力是如何建立的？', a: '我们自主运营研发中心与智能自动化生产系统，实现从研究到生产的全流程一体化。凭借独有配方与生产经验，具备国际水准的制造竞争力。' },
+          { q: 'Sauber 具体生产哪些产品？', a: '我们专注于高性能定制洗衣胶囊、高品质环保洗碗机洗涤块、获韩国食品药品安全处（MFDS）认证的外用消毒剂以及卫生湿巾。' },
+          { q: '所有产品都是自主生产吗？', a: '是的，全部产品均由本公司设备自主生产。原料与包材均向经认证的合作厂商采购，并在严格的质量管理下进行生产。' },
+          { q: '没有产品开发经验也可以下 ODM 订单吗？', a: '完全可以。基于我们积累的 ODM 经验，只需贵公司提供简单的营销概念（如产品名、目标客群等），我们即可协助产品企划与量产准备。' },
+          { q: '除目录样品外，能否进行定制生产？', a: '胶囊与片剂洗涤产品需使用专用模具生产，因此新造型需要开发新模具。（胶囊新模具开发费用约 20,000 美元）' },
+          { q: '能否处理各国的认证要求？', a: '我们有处理多家客户出口要求的经验。只需告知目标国家的必要条件，大部分技术资料与相关手续均可支持办理。' },
+          { q: 'Sauber 拥有哪些专利与认证？', a: '我们持有 ISO9001:2015 国际认证，以及洗涤剂相关专利（洗衣胶囊、洗碗机洗涤剂）。' },
+          { q: '出口通常采用哪种贸易条件（Incoterms）？', a: '通常按 EXW 与 FOB 条件报价，经协商也可按 CIF 条件进行。' },
+          { q: '装运时最近的港口是哪里？', a: '韩国平泽港与釜山港较近。我们没有指定港口，可与货代协商后按贵公司希望的港口安排装运。' },
+          { q: '是否有海外出口实绩？', a: '目前 ODM 产品已直接出口至越南与中国，并正与瑞典、台湾等多个国家和地区洽谈。' },
+          { q: '可以购买样品吗？', a: '本公司自有品牌（Sub.lab、Sauber 等）产品可按整箱单位（最少 1 箱）购买样品。' },
+          { q: '付款条件是怎样的？', a: '常规订单为预付 50%、出库前支付余款 50%；样品采购为 100% 预付。' },
+          { q: '是否具备 FTA 原产地证明资格？', a: '是的，我们已正式取得韩-欧盟、韩-中、韩-越、韩-东盟及 RCEP 协定的原产地认证出口商资格。' },
+          { q: '包装设计也可以由你们负责吗？', a: '包装设计原则上需由贵公司提供。如有需要，我们可通过专业外部合作伙伴以有偿方式协助设计工作。' },
+          { q: '如需进一步咨询，应如何联系？', a: '请发送邮件至业务负责人邮箱 yoontaekson@sauber.kr，我们将以最快速度给予准确答复。' }
+        ]
+      },
+      ja: {
+        company: 'Sauber',
+        location: 'PLMA Chicago 2026',
+        booth: 'Sauberブースへのご来場ありがとうございます。',
+        aboutTitle: 'Sauber（サウバー）について',
+        aboutText: 'Sauberは韓国に拠点を置くメーカーです。カプセル・タブレット・シート型の製剤技術をベースに、環境にやさしい衛生・消毒製品の研究開発を行っています。ドイツ語で「清潔」を意味する社名のとおり、「安全で清潔な毎日」を実現するための技術革新に注力しています。',
+        faqTitle: 'よくあるご質問',
+        searchPlaceholder: '検索...',
+        downloadTitle: '資料ダウンロード',
+        homepageBtn: '🌐 ウェブサイトを見る',
+        catalogBtn: '📄 会社概要・カタログ',
+        priceGuideBtn: '💰 価格表（OEM/ODM・PB製品流通）',
+        businessCardBtn: '🗂️ 名刺',
+        contactTitle: 'WhatsApp お問い合わせ',
+        contactText: 'お急ぎのご相談はこちらから。',
+        contactQRBtn: 'QRコードを表示',
+        contactLinkBtn: 'メッセージを送る',
+        emailBtn: '📧 メールでお問い合わせ',
+        businessCardTitle: 'ご担当者情報',
+        name: 'Yoontaek Son（課長）',
+        title: 'Sales Director',
+        email: '📧 yoontaekson@sauber.kr',
+        phone: '☎️ +82 70-4203-0236',
+        whatsapp: '💬 +82 10-5488-3303',
+        businessCardDownloadBtn: 'ダウンロード',
+        businessCardCloseBtn: '閉じる',
+        footer: '© 2026 Sauber Korea. All Rights Reserved.',
+        faqs: [
+          { q: 'Sauberはどこにある会社で、どのような業種ですか？', a: 'Sauberは韓国・鶏龍市に位置するメーカーで、洗濯用カプセル洗剤、食器洗い機用タブレット、エタノールシート（レンズクリーナー等）など、さまざまな生活衛生用品を製造しています。' },
+          { q: '最小発注数量（MOQ）はどのくらいですか？', a: 'MOQは生産方式（ODMまたは自社ブランド流通）や品目によって異なりますので、詳細はご提供する価格表をご参照ください。' },
+          { q: 'Sauberの強みは何ですか？', a: 'LG生活健康やコストコなどグローバルトップブランドの製造を担うメーカーとして、ISO9001品質マネジメントシステムと韓国最大規模の生産設備により、均一な品質と大量生産を同時に実現しています。' },
+          { q: 'Sauberの技術力はどのように築かれたのですか？', a: '自社R&Dセンターとスマート自動化生産システムを運営し、研究から生産までの全工程を一貫して行っています。独自の処方と生産ノウハウにより、グローバル水準の製造競争力を有しています。' },
+          { q: '具体的にどのような製品を製造していますか？', a: '高性能なカスタム洗濯用カプセル洗剤、高品質で環境に配慮した食器洗い機用タブレット、韓国食品医薬品安全処（MFDS）承認の外用消毒剤、衛生シート（レンズクリーナー等）を専門に製造しています。' },
+          { q: 'すべての製品を自社で生産していますか？', a: 'はい、すべて自社設備で生産しています。原料および資材は認定サプライヤーから調達し、厳格な品質管理のもとで製造しています。' },
+          { q: '製品企画の経験がなくてもODM発注は可能ですか？', a: 'はい、可能です。当社の蓄積されたODMノウハウをもとに、簡単なマーケティングコンセプト（製品名・ターゲットなど）をお伝えいただくだけで、企画から量産準備までご支援いたします。' },
+          { q: 'カタログにある形状以外のカスタム生産は可能ですか？', a: 'カプセル・タブレット洗剤は専用金型で生産するため、新しいデザインには新規金型の開発が必要です。（カプセル新規金型の開発費用は約20,000米ドル）' },
+          { q: '国ごとの認証要件に対応できますか？', a: '多様なお客様の輸出要件に対応した実績があります。進出先国の必須要件をお知らせいただければ、ほとんどの技術資料のご提供・対応が可能です。' },
+          { q: 'Sauberはどのような特許・認証を保有していますか？', a: 'ISO9001:2015国際認証、および洗剤関連特許（洗濯用カプセル洗剤、食器洗い用洗剤）を保有しています。' },
+          { q: '輸出時に主に適用する貿易条件（インコタームズ）は？', a: '基本的にEXWおよびFOB条件でお見積りしますが、ご相談によりCIF条件での対応も可能です。' },
+          { q: '船積みに近い港はどこですか？', a: '韓国の平沢港と釜山港が比較的近いです。指定港はなく、フォワーダーとの調整によりご希望の港から船積みを手配いたします。' },
+          { q: '海外輸出の実績はありますか？', a: '現在、ベトナムと中国へODM製品を直接輸出しており、スウェーデン、台湾など複数の国と協議を進めています。' },
+          { q: 'サンプルの購入は可能ですか？', a: '当社自社ブランド（Sub.lab、Sauberなど）に限り、カートン単位（最小1箱から）でサンプル購入が可能です。' },
+          { q: 'お支払い条件は？', a: '通常のご発注は前金50%、倉庫出庫前に残金50%です。サンプル購入は100%前払いとなります。' },
+          { q: 'FTA原産地証明の対応は可能ですか？', a: 'はい、韓国-EU、韓国-中国、韓国-ベトナム、韓国-ASEAN、RCEP協定における認定輸出者資格を正式に保有しています。' },
+          { q: 'パッケージデザインも依頼できますか？', a: 'パッケージデザインは原則として貴社よりご提供いただきます。ご希望の場合は、専門の外部パートナーを通じて有償でデザイン作業をご支援いたします。' },
+          { q: '追加のお問い合わせ方法を教えてください。', a: '担当者メール（yoontaekson@sauber.kr）までご連絡いただければ、最も迅速かつ正確にご回答いたします。' }
+        ]
+      },
       ko: {
         company: 'Sauber',
-        location: '암스테르담 PLMA 2026',
+        location: 'PLMA Chicago 2026',
         booth: '저희 자우버 부스에 와주셔서 감사드립니다.',
         aboutTitle: '자우버 (Sauber) 소개',
         aboutText: '캡슐 · 타블렛 · 시트형 제형 기술을 기반으로 친환경 위생 및 소독 제품을 연구 · 개발하고 있습니다. 독일어로 "깨끗함"을 뜻하는 기업명처럼 "안전하고 깨끗한 일상"을 만들기 위해 기술 혁신 및 역량을 집중하고 있습니다.',
@@ -477,7 +658,7 @@
       },
       en: {
         company: 'Sauber',
-        location: 'PLMA Amsterdam 2026',
+        location: 'PLMA Chicago 2026',
         booth: 'Thank you for visiting our Sauber booth!',
         aboutTitle: 'About Sauber',
         aboutText: 'Sauber is a manufacturer based in South Korea. We research and develop eco-friendly hygiene and disinfection products based on capsule, tablet, and sheet formulation technologies. Like our name "Sauber" means in German, we focus on technology innovation to create a safe and clean everyday life.',
@@ -525,7 +706,7 @@
       },
       de: {
         company: 'Sauber',
-        location: 'PLMA Amsterdam 2026',
+        location: 'PLMA Chicago 2026',
         booth: 'Vielen Dank für Ihren Besuch an unserem Sauber-Stand!',
         aboutTitle: 'Über Sauber',
         aboutText: 'Sauber ist ein in Südkorea ansässiger Hersteller. Wir entwickeln umweltfreundliche Hygiene- und Desinfektionsprodukte auf Basis von Kapseln-, Tabletten- und Blattformulierungstechnologien. Wie unser Name "Sauber" auf Deutsch bedeutet, konzentrieren wir uns auf technologische Innovationen, um einen sicheren und sauberen Alltag zu schaffen.',
@@ -573,7 +754,7 @@
       },
       nl: {
         company: 'Sauber',
-        location: 'PLMA Amsterdam 2026',
+        location: 'PLMA Chicago 2026',
         booth: 'Dank u dat u onze Sauber-stand bezoekt!',
         aboutTitle: 'Over Sauber',
         aboutText: 'Sauber is een in Zuid-Korea gevestigde fabrikant. We onderzoeken en ontwikkelen milieuvriendelijke hygiëne- en desinfectieproducten op basis van capsule-, tablet- en bladtechnologieën. Net als onze naam "Sauber" in het Duits betekent, richten we ons op technische innovatie om een veilige en schoon dagelijks leven te creëren.',
@@ -621,11 +802,27 @@
       }
     };
 
+    // ── WeChat / QR modal labels (merged into translations above) ──
+    const extraI18n = {
+      en: { whatsappQrTitle: 'WhatsApp QR Code', wechatTitle: 'WeChat', wechatText: 'Feel free to contact us via WeChat as well.', wechatQrBtn: 'Show QR Code', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'WeChat QR Code', wechatCloseBtn: 'Close', wechatCopied: '✅ Copied!' },
+      es: { whatsappQrTitle: 'Código QR de WhatsApp', wechatTitle: 'WeChat', wechatText: 'También puede contactarnos por WeChat.', wechatQrBtn: 'Ver código QR', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'Código QR de WeChat', wechatCloseBtn: 'Cerrar', wechatCopied: '✅ ¡Copiado!' },
+      de: { whatsappQrTitle: 'WhatsApp QR-Code', wechatTitle: 'WeChat', wechatText: 'Sie können uns auch gerne über WeChat kontaktieren.', wechatQrBtn: 'QR-Code anzeigen', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'WeChat QR-Code', wechatCloseBtn: 'Schließen', wechatCopied: '✅ Kopiert!' },
+      nl: { whatsappQrTitle: 'WhatsApp QR-code', wechatTitle: 'WeChat', wechatText: 'U kunt ons ook via WeChat bereiken.', wechatQrBtn: 'QR-code weergeven', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'WeChat QR-code', wechatCloseBtn: 'Sluiten', wechatCopied: '✅ Gekopieerd!' },
+      zh: { whatsappQrTitle: 'WhatsApp 二维码', wechatTitle: '微信 (WeChat)', wechatText: '也欢迎通过微信与我们联系。', wechatQrBtn: '显示二维码', wechatIdBtn: '微信号: sunchenglee8', wechatQrTitle: '微信二维码', wechatCloseBtn: '关闭', wechatCopied: '✅ 已复制！' },
+      ja: { whatsappQrTitle: 'WhatsApp QRコード', wechatTitle: 'WeChat', wechatText: 'WeChatでもお気軽にご連絡ください。', wechatQrBtn: 'QRコードを表示', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'WeChat QRコード', wechatCloseBtn: '閉じる', wechatCopied: '✅ コピーしました！' },
+      ko: { whatsappQrTitle: 'WhatsApp QR 코드', wechatTitle: 'WeChat 문의', wechatText: 'WeChat으로도 편하게 연락주세요.', wechatQrBtn: 'QR 코드 보기', wechatIdBtn: 'ID: sunchenglee8', wechatQrTitle: 'WeChat QR 코드', wechatCloseBtn: '닫기', wechatCopied: '✅ 복사되었습니다!' }
+    };
+    Object.keys(extraI18n).forEach(function (l) {
+      if (translations[l]) Object.assign(translations[l], extraI18n[l]);
+    });
+
     let currentLang = 'en';
     let allFAQs = translations.en.faqs;
 
-    function switchLanguage(lang) {
+    function switchLanguage(lang, btn) {
+      if (!translations[lang]) lang = 'en';
       currentLang = lang;
+      document.documentElement.lang = lang;
       allFAQs = translations[lang].faqs;
       const t = translations[lang];
       
@@ -654,17 +851,30 @@
       document.getElementById('contactWhatsApp').textContent = t.whatsapp;
       document.getElementById('whatsappNumber').textContent = '+82 10-5488-3303';
       document.getElementById('footer').textContent = t.footer;
-      document.getElementById('qrModalTitle').textContent = lang === 'ko' ? 'WhatsApp QR Code:' : lang === 'en' ? 'WhatsApp QR Code:' : 'WhatsApp QR-code:';
+      document.getElementById('qrModalTitle').textContent = t.whatsappQrTitle;
+      document.getElementById('wechatTitle').textContent = t.wechatTitle;
+      document.getElementById('wechatText').textContent = t.wechatText;
+      document.getElementById('wechatQrBtn').textContent = t.wechatQrBtn;
+      document.getElementById('wechatIdBtn').textContent = t.wechatIdBtn;
+      document.getElementById('wechatQrTitle').textContent = t.wechatQrTitle;
+      document.getElementById('wechatCloseBtn').textContent = t.wechatCloseBtn;
+      document.getElementById('wechatCopied').textContent = t.wechatCopied;
       
       // Update language button styles
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
+      const btns = document.querySelectorAll('.lang-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const order = { en: 0, es: 1, de: 2, nl: 3, zh: 4, ja: 5, ko: 6 };
+        if (btns[order[lang]]) btns[order[lang]].classList.add('active');
+      }
       
       renderFAQs(allFAQs);
       document.getElementById('searchInput').value = '';
       document.getElementById('qrModal').classList.remove('active');
+      document.getElementById('wechatQrModal').classList.remove('active');
+      document.getElementById('wechatCopied').style.display = 'none';
     }
 
     function renderFAQs(faqs) {
@@ -691,6 +901,35 @@
       document.getElementById('qrModal').classList.toggle('active');
     }
 
+    function toggleWechatQR() {
+      document.getElementById('wechatQrModal').classList.toggle('active');
+    }
+
+    function copyWechat() {
+      const msg = document.getElementById('wechatCopied');
+      const show = function () {
+        msg.style.display = 'block';
+        setTimeout(function () { msg.style.display = 'none'; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('sunchenglee8').then(show).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        const ta = document.createElement('textarea');
+        ta.value = 'sunchenglee8';
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        show();
+      }
+    }
+
     function toggleBusinessCardModal() {
       const modal = document.getElementById('businessCardModal');
       if (modal.style.display === 'none') {
@@ -712,13 +951,7 @@
     renderFAQs(allFAQs);
     
     // Initialize all text content on load
-    window.addEventListener('DOMContentLoaded', function() {
-      switchLanguage('en');
-      const englishBtn = document.querySelectorAll('.lang-btn')[0];
-      if (englishBtn) {
-        englishBtn.classList.add('active');
-      }
-    });
+    switchLanguage('en');
   </script>
 </body>
 </html>
